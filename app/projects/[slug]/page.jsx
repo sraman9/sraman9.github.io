@@ -43,7 +43,7 @@ export default function ProjectPage({ params }) {
 
       <div className="detail-body">
         <h2 className="sub-head">Why I built it</h2>
-        <p>{project.why}</p>
+        {project.why.split('\n\n').map((para) => <p key={para.slice(0, 24)}>{para}</p>)}
 
         <h2 className="sub-head">How it works</h2>
         {project.body.map((para) => <p key={para.slice(0, 24)}>{para}</p>)}
