@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import './globals.css';
 import { profile } from '../content/site';
 
@@ -7,6 +9,8 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const hasResume = fs.existsSync(path.join(process.cwd(), 'public', 'resume.pdf'));
+
   return (
     <html lang="en">
       <head>
@@ -31,7 +35,7 @@ export default function RootLayout({ children }) {
           <footer className="site">
             <a href={profile.github}>GitHub</a>
             <a href={profile.linkedin}>LinkedIn</a>
-            {profile.resume && <a href={profile.resume}>Resume</a>}
+            {hasResume && profile.resume && <a href={profile.resume}>Resume</a>}
           </footer>
         </div>
       </body>
