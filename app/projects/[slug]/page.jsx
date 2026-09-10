@@ -15,15 +15,20 @@ function embedUrl(url) {
   return url.replace('/share/', '/embed/').split('?')[0];
 }
 
+// content/site.js uses TODO as a placeholder marker — never show it to visitors.
+const isDraft = (text) => !text || /^TODO\b/i.test(text.trim());
+
 export default function ProjectPage({ params }) {
   const project = projects.find((p) => p.slug === params.slug);
   const video = embedUrl(project.video);
+  const why = isDraft(project.why) ? null : project.why.split('\n\n').filter((p) => !isDraft(p));
+  const body = (project.body || []).filter((p) => !isDraft(p));
 
   return (
     <main className="hero">
       <a className="back" href="/projects/">All projects</a>
       <h1 className="page-title">{project.name}</h1>
-      <p className="lede">{project.blurb}</p>
+      {!isDraft(project.blurb) && <p className="lede">{project.blurb}</p>}
 
       <div className="actions">
         {project.live && <a className="button" href={project.live}>Launch</a>}
@@ -42,11 +47,19 @@ export default function ProjectPage({ params }) {
       )}
 
       <div className="detail-body">
-        <h2 className="sub-head">Why I built it</h2>
-        {project.why.split('\n\n').map((para) => <p key={para.slice(0, 24)}>{para}</p>)}
+        {why && why.length > 0 && (
+          <>
+            <h2 className="sub-head">Why I built it</h2>
+            {why.map((para) => <p key={para.slice(0, 24)}>{para}</p>)}
+          </>
+        )}
 
-        <h2 className="sub-head">How it works</h2>
-        {project.body.map((para) => <p key={para.slice(0, 24)}>{para}</p>)}
+        {body.length > 0 && (
+          <>
+            <h2 className="sub-head">How it works</h2>
+            {body.map((para) => <p key={para.slice(0, 24)}>{para}</p>)}
+          </>
+        )}
       </div>
 
       <ul className="stack">

@@ -5,7 +5,11 @@
 export const profile = {
   name: 'Sid Raman',
 
-  // The one line under your name. Nothing else on the landing page.
+  // DRAFT — one line under your name on the homepage. Rewrite to sound like you.
+  tagline:
+    'Computer & Data Science student who builds tools for problems that annoy me enough to fix — finance, health, and everyday friction.',
+
+  // The line under your name. Nothing else on the landing page.
   school: 'Computer and Data Science',
   // Drop an image at public/uw.png (or .svg) and put '/uw.png' here.
   // Leave as null and a plain "UW" badge is drawn instead.
@@ -18,8 +22,8 @@ export const profile = {
 };
 
 export const about = [
-  'DRAFT — rewrite this in your own voice. What you like building and why.',
-  'DRAFT — the human paragraph. What got you into this, what you build when nobody is grading it, what you want to learn next.',
+  "DRAFT — rewrite this in your own voice. I'm a Computer and Data Science student at UW–Madison. Most of what I build starts from a real annoyance rather than a class assignment — a household portfolio that couldn't be rebalanced by any tool I could find, a medication history that was hard to track, a storage problem every student on campus has in May.",
+  "DRAFT — outside of coursework I've spent internships moving between fairly different kinds of engineering: RLHF and QA on multimodal models at Handshake, building a GenAI chatbot and front end at Hermony.life, an analytics layer for optical sensor data at Middleton Spectral Vision, and AWS Lambda microservices at Zenoti. What ties it together is wanting to see the thing actually work end to end, not just the part that's interesting to me.",
 ];
 
 // Drop a photo at public/me.jpg and set this to '/me.jpg'.
