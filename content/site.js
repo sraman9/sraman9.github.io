@@ -39,14 +39,15 @@ export const projects = [
     image: null,
     video: null,
     blurb:
-      'Rebalances a household portfolio held across several accounts, isolating cash and respecting how liquid each holding is.',
+      'Turns a messy broker export into the exact buy and sell trades per account, without moving a dollar between accounts.',
     stack: ['TypeScript'],
     repo: 'https://github.com/sraman9/household-portfolio-rebalancer',
-    live: null, // TODO — deploy it, then paste the URL here
-    why: 'TODO — why you built this one. You said you are passionate about it; say why in plain language.',
+    live: 'https://household-portfolio-rebalancer-three.vercel.app/',
+    why: "Rebalancing one account is easy. A household is not one account. Ours was spread across a joint brokerage and two IRAs, and money can't move between them — pulling cash out of an IRA to fix the allocation isn't a transfer, it's a taxable event. So the real problem isn't \"what should the portfolio look like,\" it's \"how do I get there when each account has to fix itself using only what's already inside it.\"\n\nEvery tool I found either assumed one account or quietly told me to move money I couldn't move. So I built the one I wanted: upload the export, set the targets, get a trade list I can actually place.",
     body: [
-      'TODO — what the tool actually does, start to finish.',
-      'TODO — the hard part. Rebalancing across multiple accounts is not the same as rebalancing one, and that difference is the interesting story.',
+      'You drop in a positions export and set a target allocation — how much in US equity, international, gold, treasuries, whatever you want, adjustable with sliders. It reads every account, maps each ticker to an asset class, and computes per-account buy and sell orders that land the household on target while each account stays self-funded.',
+      'Classification happens in layers. A curated table maps common tickers straight to an asset class. Anything unrecognized falls to a second pass, checking the raw symbol for Fidelity\'s cash-sweep suffix, or scanning the description for phrases like "MONEY MARKET." If neither hits, the position lands in an "Other" bucket instead of being silently guessed as equity. A wrong guess there would quietly distort the household\'s real allocation. Liquidity preference works the same way: brokerage accounts default to fully available cash, IRAs default to none, because pulling cash from one is free and pulling it from the other has tax consequences.',
+      "It doesn't guess on your behalf. The ticker-to-asset-class mapping is editable, each account gets its own liquidity preference for how much cash to leave behind, and nothing is uploaded anywhere — parsing and computation run entirely in your browser.",
     ],
   },
   {
